@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMCS Survey Questionnaire</title>
+<style>
+:root{--navy:#17365d;--blue:#2f5597;--light:#eef3f9;--border:#cfd7e3;--text:#1f2937;--muted:#64748b}
+*{box-sizing:border-box} body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#f5f7fa;color:var(--text);line-height:1.5}
+.container{max-width:980px;margin:28px auto;padding:0 16px}
+.header{background:white;border:1px solid var(--border);border-top:7px solid var(--navy);padding:26px 28px;text-align:center;border-radius:10px 10px 0 0}
+.header h1{font-size:22px;margin:0 0 5px;color:var(--navy)} .header h2{font-size:18px;margin:4px 0 18px}
+.header p{margin:3px 0;font-size:14px}.intro{text-align:left;margin-top:20px;padding:16px;background:var(--light);border-radius:7px;font-size:14px}
+.card{background:white;border:1px solid var(--border);margin-top:16px;padding:22px 24px;border-radius:9px}
+h3{color:var(--navy);margin:0 0 15px;font-size:18px} h4{color:var(--blue);margin:22px 0 8px}
+label{display:block;font-weight:600;margin:9px 0 5px}.choice{display:inline-flex;align-items:center;gap:7px;font-weight:normal;margin:6px 18px 6px 0}.choice input{width:18px;height:18px}
+input[type=text],select,textarea{width:100%;padding:11px;border:1px solid var(--border);border-radius:6px;font:inherit}
+textarea{min-height:110px;resize:vertical}
+.table-wrap{overflow-x:auto}.likert{width:100%;border-collapse:collapse;min-width:700px;margin-top:7px}
+.likert th,.likert td{border:1px solid var(--border);padding:9px;text-align:center}.likert th{background:#dce6f1;color:#172b4d}.likert th:first-child,.likert td:first-child{text-align:left;width:66%}.likert input{width:18px;height:18px}
+.scale{font-size:13px;background:#fafafa;border:1px solid var(--border);padding:10px;border-radius:6px;margin:10px 0}
+.hidden{display:none}.required{color:#b91c1c}.actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:20px}
+button{border:0;border-radius:7px;padding:12px 20px;font:600 15px Tahoma;cursor:pointer}.primary{background:var(--navy);color:white}.secondary{background:#e8edf4;color:#243b5a}
+.notice{padding:12px 14px;border-radius:6px;background:#fff7ed;border:1px solid #fed7aa;font-size:13px;margin-top:12px}
+.success{display:none;text-align:center;padding:28px;background:white;border:1px solid #b7d6c2;border-radius:9px;margin-top:16px}
+.footer{text-align:center;color:var(--muted);font-size:12px;margin:20px}
+@media(max-width:650px){.header,.card{padding:18px}.header h1{font-size:19px}.likert{min-width:620px}}
+</style>
+</head>
+<body>
+<div class="container">
+<header class="header">
+  <div>Republic of the Philippines</div>
+  <strong>CENTRAL MINDANAO COMPUTER SCHOOL</strong>
+  <div>M'lang, Cotabato</div>
+  <h1>SURVEY QUESTIONNAIRE</h1>
+  <h2>“INTEGRATED QUEUING SERVICE MANAGEMENT SYSTEM FOR STUDENTS”</h2>
+  <div class="intro">
+    We are conducting a study on the existing student queuing and service process at the Cashier, Registrar, and Library offices of Central Mindanao Computer School (CMCS). This questionnaire gathers information on the current manual queuing process prior to the development of a proposed computerized queuing system. It does not ask about a system that has already been built; please answer based on your actual experience. Your responses will be treated confidentially and used solely for academic purposes. You are not required to disclose your name.
+  </div>
+</header>
+
+<form id="surveyForm" class="card">
+  <div class="notice"><b>Instructions:</b> Please answer Part I completely. For Parts II and III, select the response that corresponds to your answer. For Part IV, write your answer in the space provided. Kindly answer every item.</div>
+
+  <section>
+    <h3>Part I. Respondent Profile</h3>
+    <label>Respondent Stratum <span class="required">*</span></label>
+    <label class="choice"><input type="radio" name="stratum" value="Student" required> Student</label>
+    <label class="choice"><input type="radio" name="stratum" value="Administrative Staff" required> Administrative Staff</label>
+
+    <div id="studentProfile">
+      <label>Year Level <span class="required">*</span></label>
+      <label class="choice"><input type="radio" name="yearLevel" value="1st Year"> 1st Year</label>
+      <label class="choice"><input type="radio" name="yearLevel" value="2nd Year"> 2nd Year</label>
+      <label class="choice"><input type="radio" name="yearLevel" value="3rd Year"> 3rd Year</label>
+      <label class="choice"><input type="radio" name="yearLevel" value="4th Year"> 4th Year</label>
+      <label>Office you transact with more often <span class="required">*</span></label>
+      <label class="choice"><input type="radio" name="office" value="Cashier"> Cashier</label>
+      <label class="choice"><input type="radio" name="office" value="Registrar"> Registrar</label>
+      <label class="choice"><input type="radio" name="office" value="Library"> Library</label>
+      <label class="choice"><input type="radio" name="office" value="More than one"> More than one</label>
+    </div>
+
+    <div id="staffProfile" class="hidden">
+      <label>Office <span class="required">*</span></label>
+      <label class="choice"><input type="radio" name="staffOffice" value="Cashier"> Cashier</label>
+      <label class="choice"><input type="radio" name="staffOffice" value="Registrar"> Registrar</label>
+      <label class="choice"><input type="radio" name="staffOffice" value="Library"> Library</label>
+      <label>Years of Service (Optional)</label>
+      <input type="text" name="yearsService" placeholder="Optional">
+    </div>
+  </section>
+
+  <div id="studentQuestions"></div>
+  <div id="staffQuestions"></div>
+  <div id="commonEnd"></div>
+
+  <div class="actions">
+    <button type="reset" class="secondary">Clear Form</button>
+    <button type="submit" class="primary">Submit Questionnaire</button>
+  </div>
+</form>
+
+<div id="success" class="success">
+  <h3>Thank you for your participation!</h3>
+  <p>Your questionnaire has been submitted successfully.</p>
+  <button type="button" class="secondary" id="newResponse">Submit another response</button>
+</div>
+<div class="footer">Central Mindanao Computer School • Academic Research Questionnaire</div>
+</div>
+
+<script>
+const studentSections = [
+["A. Waiting Time",[
+"I usually spend a long time waiting for my turn at the Cashier, Registrar, or Library office.",
+"The amount of time I wait is longer than I expect for the type of transaction I need.",
+"Long waiting time at these offices affects my other school-related activities, such as attending class.",
+"The current waiting time at these offices is a problem that needs to be addressed."
+]],
+["B. Overcrowding and Hallway Congestion",[
+"The hallway outside the Cashier, Registrar, or Library office is often crowded with waiting students.",
+"Because of overcrowding, it is difficult to move freely near these offices.",
+"The limited space in the waiting area makes it uncomfortable to wait for my turn.",
+"Overcrowding at these offices is especially noticeable during peak periods, such as enrollment or examination weeks."
+]],
+["C. Service Order and Fairness",[
+"It is often unclear who should be served next at the Cashier, Registrar, or Library office.",
+"I have observed students being served ahead of others who arrived earlier.",
+"It is difficult for me to determine my exact position in the queue under the current process.",
+"I am unsure whether the order in which students are served is truly fair."
+]],
+["D. Queue Monitoring",[
+"I find it difficult to know how many students are ahead of me while waiting.",
+"I need to stay physically close to the counter to avoid missing my turn.",
+"I am often unsure how much longer I need to wait once I am in line.",
+"There is no reliable way for me to check my queue status without asking staff directly."
+]],
+["E. Accountability and Transaction Records",[
+"I am unsure whether my transaction was properly recorded by the office after it was completed.",
+"I would find it difficult to verify a past transaction if a discrepancy occurred, since there is no clear record.",
+"There is no easy way for me to confirm that my transaction was completed correctly.",
+"The absence of a formal transaction record makes it harder to address concerns about my account or requests."
+]],
+["F. Communication Problems",[
+"Misunderstandings sometimes occur between students and staff regarding transaction details.",
+"Information about requirements or procedures is not always communicated clearly by office staff.",
+"I sometimes find it hard to get a clear answer from staff regarding the status of my request.",
+"Verbal communication alone is not sufficient to avoid confusion during transactions at these offices."
+]]
+];
+
+const staffSections = [
+["A. Waiting Time",[
+"Students often wait a long time before I am able to attend to their transaction.",
+"The volume of waiting students makes it difficult for me to serve each one within a reasonable time.",
+"Long waiting times contribute to complaints or expressions of frustration from students.",
+"Managing waiting time is a challenge under the current manual process."
+]],
+["B. Overcrowding and Hallway Congestion",[
+"The area outside my office is often crowded with waiting students.",
+"Overcrowding near my counter makes it difficult to identify who should be served next.",
+"The limited waiting space creates a disorganized environment during busy periods.",
+"Congestion becomes more difficult to manage during peak periods, such as enrollment or examination weeks."
+]],
+["C. Service Order and Fairness",[
+"It is difficult to determine, with certainty, who arrived first among waiting students.",
+"Disputes or complaints about service order occasionally arise while I am on duty.",
+"I sometimes rely on students themselves to remind me of their position in line.",
+"The current method of determining service order is not easy for me to enforce consistently."
+]],
+["D. Queue Monitoring",[
+"I do not have a reliable way to track how many students are currently waiting.",
+"I find it difficult to give students an accurate estimate of their waiting time.",
+"Monitoring the queue while also processing transactions adds to my workload.",
+"There is no system in place that allows me to view the current queue status at a glance."
+]],
+["E. Accountability and Transaction Records",[
+"I rely mainly on manual notes or memory to keep track of completed transactions.",
+"It is time-consuming to locate the record of a specific past transaction when needed.",
+"The absence of a centralized record makes it difficult to verify a transaction if a concern is raised later.",
+"Keeping accurate records under the current process requires significant manual effort."
+]],
+["F. Communication Problems",[
+"Misunderstandings sometimes occur between myself and students regarding transaction details or requirements.",
+"I sometimes need to repeat information to students because it was not clearly understood the first time.",
+"It is difficult to inform waiting students of delays without interrupting the transaction I am currently processing.",
+"Verbal communication alone is not always sufficient to avoid confusion with students during transactions."
+]]
+];
+
+const studentFeatures = [
+"Automated generation of a queue number upon arrival.",
+"A real-time display showing the number currently being served.",
+"A queuing method that follows strict first-come, first-served order.",
+"A system that reduces the need to physically stand in line while waiting.",
+"Digital recording of completed transactions.",
+"A reporting feature that allows the administration to monitor service activity."
+];
+const staffFeatures = [
+"Automated generation of a queue number for each student.",
+"A real-time display showing the number currently being served.",
+"A queuing method that follows strict first-come, first-served order.",
+"A feature that reduces the number of students physically waiting near my counter.",
+"Digital recording of completed transactions.",
+"A reporting feature that allows the administration to monitor service activity."
+];
+
+function likertTable(items, name, scale){
+  return `<div class="table-wrap"><table class="likert"><thead><tr><th>Statement</th><th>5</th><th>4</th><th>3</th><th>2</th><th>1</th></tr></thead><tbody>
+  ${items.map((q,i)=>`<tr><td>${i+1}. ${q}</td>${[5,4,3,2,1].map(v=>`<td><input type="radio" name="${name}_${i+1}" value="${v}" required></td>`).join("")}</tr>`).join("")}
+  </tbody></table></div>
+  <div class="scale">${scale}</div>`;
+}
+function buildParts(sections, features, role){
+  let s = `<section class="card"><h3>Part II. Assessment of the Existing Queuing Process</h3>`;
+
+  sections.forEach((x, idx) => {
+    s += `<h4>${x[0]}</h4>`;
+    s += likertTable(
+      x[1],
+      role + "_part2_" + idx,
+      "5 = Strongly Agree • 4 = Agree • 3 = Neutral • 2 = Disagree • 1 = Strongly Disagree"
+    );
+  });
+
+  s += `</section>`;
+
+  s += `<section class="card"><h3>Part III. Perceived Need for a Computerized Queuing System</h3>`;
+  s += `<h4>A. Perceived Need</h4>`;
+  s += `<p>Please select the response that corresponds to your answer.</p>`;
+
+  const needQuestions = [
+    "I believe the current manual queuing process at CMCS needs improvement.",
+    "I believe a computerized queuing system would make availing Cashier, Registrar, and Library services more efficient.",
+    "I would be willing to use a computerized queuing system if it were made available at CMCS."
+  ];
+
+  s += likertTable(
+    needQuestions,
+    role + "_part3",
+    "5 = Strongly Agree • 4 = Agree • 3 = Neutral • 2 = Disagree • 1 = Strongly Disagree"
+  );
+
+  s += `<h4>B. Desired Features (Scale 2: Level of Need)</h4>`;
+  s += `<p>Please rate how much you think each feature is needed in a computerized queuing system.</p>`;
+
+  if (features && features.length) {
+    s += likertTable(
+      features,
+      role + "_features",
+      "5 = Very Much Needed • 4 = Much Needed • 3 = Moderately Needed • 2 = Slightly Needed • 1 = Not Needed"
+    );
+  }
+
+  s += `</section>`;
+
+  s += `<section class="card"><h3>Part IV. Open-Ended Questions</h3>`;
+
+  const qs = role === "student" ? [
+    "What specific problems have you experienced with the current queuing process at the Cashier, Registrar, or Library?",
+    "How does the current queuing process affect your overall experience as a student at CMCS?",
+    "What improvements would you suggest to make student service at these offices more efficient?",
+    "What features would you like to see in a computerized queuing system for CMCS?"
+  ] : [
+    "What specific problems have you experienced in managing student queues under the current manual process?",
+    "How does the current queuing process affect your ability to perform your daily tasks?",
+    "What improvements would you suggest to make student service management more efficient?",
+    "What features would you like to see in a computerized queuing system to support your work?"
+  ];
+
+  qs.forEach((q, i) => {
+    s += `<label>${i + 1}. ${q}</label><textarea name="${role}_open_${i + 1}" rows="4" required></textarea>`;
+  });
+
+  s += `</section>`;
+  return s;
+}
+document.getElementById("studentQuestions").innerHTML=buildParts(studentSections,studentFeatures,"student");
+document.getElementById("staffQuestions").innerHTML=buildParts(staffSections,staffFeatures,"staff");
+
+function activateRole(student){
+  const studentProfile = document.getElementById("studentProfile");
+  const staffProfile = document.getElementById("staffProfile");
+  const studentQuestions = document.getElementById("studentQuestions");
+  const staffQuestions = document.getElementById("staffQuestions");
+
+  studentProfile.classList.toggle("hidden", !student);
+  staffProfile.classList.toggle("hidden", student);
+  studentQuestions.classList.toggle("hidden", !student);
+  staffQuestions.classList.toggle("hidden", student);
+
+  // Only the visible branch is required.
+  document.querySelectorAll("#studentQuestions input, #studentQuestions textarea")
+    .forEach(x => x.required = student);
+
+  document.querySelectorAll("#staffQuestions input, #staffQuestions textarea")
+    .forEach(x => x.required = !student);
+
+  document.querySelectorAll('#studentProfile input[type="radio"]')
+    .forEach(x => x.required = student);
+
+  document.querySelectorAll('#staffProfile input[type="radio"]')
+    .forEach(x => x.required = !student);
+
+  // Years of service is optional.
+  const years = document.querySelector('#staffProfile input[name="yearsService"]');
+  if (years) years.required = false;
+}
+
+document.querySelectorAll('input[name="stratum"]').forEach(r => {
+  r.addEventListener("change", () => activateRole(r.value === "Student"));
+});
+
+// Start with the Student branch active.
+activateRole(true);
+
+document.getElementById("surveyForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const form = e.currentTarget;
+
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
+  const endpoint = "https://script.google.com/macros/s/AKfycby7Ogd-mtt4gWt3qGt23ifRqjDcf2QA8-gcwm-kzzk40KkVJvzbaQNCXxSyd5_PWWB6/exec";
+
+  const button = form.querySelector('button[type="submit"]');
+  const originalText = button ? button.textContent : "Submit Questionnaire";
+
+  if (button) {
+    button.disabled = true;
+    button.textContent = "Submitting...";
+  }
+
+  let frame = document.getElementById("submitFrame");
+  if (!frame) {
+    frame = document.createElement("iframe");
+    frame.id = "submitFrame";
+    frame.name = "submitFrame";
+    frame.style.display = "none";
+    document.body.appendChild(frame);
+  }
+
+  const sender = document.createElement("form");
+  sender.method = "POST";
+  sender.action = endpoint;
+  sender.target = "submitFrame";
+  sender.style.display = "none";
+
+  const formData = new FormData(form);
+  formData.forEach(function(value, key){
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = key;
+    input.value = value;
+    sender.appendChild(input);
+  });
+
+  const timestamp = document.createElement("input");
+  timestamp.type = "hidden";
+  timestamp.name = "submittedAt";
+  timestamp.value = new Date().toISOString();
+  sender.appendChild(timestamp);
+
+  document.body.appendChild(sender);
+
+  try {
+    sender.submit();
+  } catch (err) {
+    console.error("Submission error:", err);
+    alert("The questionnaire could not be sent. Please try again.");
+    if (button) {
+      button.disabled = false;
+      button.textContent = originalText;
+    }
+    sender.remove();
+    return;
+  }
+
+  setTimeout(function(){
+    form.style.display = "none";
+
+    const success = document.getElementById("success");
+    if (success) success.style.display = "block";
+
+    if (button) {
+      button.disabled = false;
+      button.textContent = originalText;
+    }
+
+    sender.remove();
+  }, 1800);
+});
+document.getElementById("newResponse").addEventListener("click",()=>{
+  document.getElementById("surveyForm").reset();
+  document.getElementById("surveyForm").style.display="block";
+  document.getElementById("success").style.display="none";
+  activateRole(true);
+});
+</script>
+</body>
+</html>
